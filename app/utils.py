@@ -7,4 +7,4 @@ def handle_error(e):
             "type": "challenge error"
         }
     }
-    return jsonify(error_response), 500
+    return jsonify(error_response), 501
