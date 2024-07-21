@@ -3,6 +3,7 @@ from DrissionPage import ChromiumOptions, WebPage
 # import os
 from pyvirtualdisplay import Display
 from app.config import get_proxies, configure_logging
+import logging
 
 configure_logging()
 
@@ -62,7 +63,7 @@ class CFClearanceManager:
                     return cookie['value']
             return None
         except Exception as e:
-            print(f"Error during Cloudflare clearance: {e}")
+            logging.error(f"Error during Cloudflare clearance: {e}")
             self.close_browser()
             return None
 
