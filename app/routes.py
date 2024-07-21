@@ -37,7 +37,7 @@ def onCFClearanceRequest():
         if cf_clearance is None:
             # 如果 gtoken 为 None,返回一个错误响应
             return jsonify({
-                "error": "No gtoken available",
+                "error": "No cf_clearance available",
                 "status": "error"
             }), 404  # 使用 404 状态码表示未找到资源
         
