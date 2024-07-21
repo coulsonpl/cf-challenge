@@ -30,7 +30,7 @@ class GTokenManager:
         self.driver = uc.Chrome(options=options)
         self.driver.get(POPAI_BASE_URL)
 
-        self.user_agent = self.driver.execute_script("return navigator.userAgent")
+        self.user_agent = self.get_user_agent()
         logging.info(f"Browser User Agent: {self.user_agent}")
 
     def ensure_browser(self):

@@ -15,6 +15,10 @@ RUN apt-get update && apt-get install -y \
     libxss1 \
     libappindicator1 \
     gnupg \
+    python3-tk \ 
+    python3-dev \
+    xserver-xephyr \
+    gnome-screenshot \
     --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
