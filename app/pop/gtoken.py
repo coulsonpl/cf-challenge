@@ -49,18 +49,27 @@ class GTokenManager:
         if self.user_agent is None:
             self.user_agent = self.driver.execute_script("return navigator.userAgent")
         return self.user_agent
+    
+    def get_script(self, site_key, action):
+        str_js = f"""
+            try {{
+                var py_callback = arguments[arguments.length - 1];
+                const a = await window.grecaptcha.enterprise.execute("{site_key}", {{
+                    action: "{action}"
+                }});
+                py_callback(a)
+            }} catch (a) {{
+                py_callback("")
+            }}
+        """
+        return str_js
 
     def get_gtoken(self):
         try:
             self.ensure_browser()
 
-            # 获取当前脚本文件的绝对路径
-            current_dir = os.path.dirname(os.path.abspath(__file__))
-            # 构建 JS 文件的完整路径
-            js_file_path = os.path.join(current_dir, 'recaptcha__zh_cn.js')
-            with open(js_file_path, 'r', encoding='utf-8', errors='ignore') as f:
-                str_js = f.read()
-
+            site_key = "6LfP64kpAAAAAP_Jl8kdL0-09UKzowM87iddJqXA"
+            str_js = self.get_script(site_key, "LOGIN")
             gtoken = self.driver.execute_async_script(str_js)
             print(f"Got new GToken: {gtoken}")
             return gtoken
