@@ -45,7 +45,7 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 设置环境变量
-ENV DISPLAY=:99
+ENV DISPLAY=:0
 
 # 暴露端口
 EXPOSE 3000
