@@ -12,7 +12,7 @@ services:
       - '3009:3000'
     environment:
       - TZ=Asia/Shanghai
-      # 浏览器的代理设置不支持用户名密码认证
+      # 注意：浏览器的代理设置不支持用户名密码认证
       - HTTPS_PROXY=http://192.168.31.3:7890 
       - SERVER_PORT=3000
 ```
